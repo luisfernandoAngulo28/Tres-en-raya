@@ -1,0 +1,49 @@
+Mejoras realizadas en el proyecto "3 en raya"
+
+1. Botón de reinicio de partida
+- Se agregó un botón "Reiniciar" para comenzar una nueva partida sin recargar la app.
+- Código relevante:
+<Button title="Reiniciar" onPress={reiniciarJuego} color="#22c55e" />
+
+2. Animación y colores personalizados
+- Las X y O tienen colores llamativos y sombra.
+- El mensaje de ganador/empate tiene animación de escala.
+- Código relevante:
+<Animated.Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', transform: [{ scale: mensajeAnim }], }}>
+  {ganador ? `Ganó: ${ganador}` : empate ? '¡Empate!' : `Turno: ${turno}`}
+</Animated.Text>
+- Estilos:
+xText: { color: '#22d3ee', textShadowColor: '#0ea5e9', ... },
+oText: { color: '#f472b6', textShadowColor: '#be185d', ... }
+
+3. Resaltado de la línea ganadora
+- Las celdas de la línea ganadora se resaltan en amarillo.
+- Código relevante:
+const esGanadora = lineaGanadora.includes(idx);
+<Pressable style={[styles.cell, esGanadora && styles.cellWinner]} ...>
+- Estilo:
+cellWinner: {
+  backgroundColor: '#facc15',
+  borderWidth: 2,
+  borderColor: '#eab308',
+}
+
+4. Sonidos en la app
+- Sonido al marcar una casilla, ganar o empatar usando expo-av.
+- Código relevante:
+const clickSound = require('../assets/sounds/click.mp3');
+const winSound = require('../assets/sounds/win.mp3');
+const drawSound = require('../assets/sounds/draw.mp3');
+playSound(clickSound); // al marcar
+playSound(winSound);   // al ganar
+playSound(drawSound);  // al empatar
+
+5. Capturas de pantalla
+- Incluye imágenes de:
+  - Pantalla inicial del juego.
+  - Tablero durante una partida.
+  - Mensaje de ganador o empate.
+  - Botón de reinicio visible.
+  - Sonidos funcionando (puedes mencionar que se escuchan al marcar/ganar).
+
+Puedes copiar este texto a Word, agregar las capturas de pantalla y exportar como PDF.
